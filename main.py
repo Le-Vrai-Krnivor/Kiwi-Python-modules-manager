@@ -37,8 +37,13 @@ class LibraryManager(QWidget):
 
         self.layout.addLayout(self.library_layout)
 
+        # Création du champ de texte pour la console
         self.console_output = QTextEdit()
         self.console_output.setReadOnly(True)
+        
+        # Modification du style pour avoir un fond noir et du texte blanc
+        self.console_output.setStyleSheet("background-color: black; color: white; font-family: monospace;")
+
         self.layout.addWidget(self.console_output)
 
         self.setLayout(self.layout)
