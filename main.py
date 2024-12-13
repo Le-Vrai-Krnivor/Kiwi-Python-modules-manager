@@ -2,7 +2,7 @@ import sys
 import subprocess
 from PyQt6.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QLabel, QPushButton,
-    QListWidget, QLineEdit, QMessageBox, QHBoxLayout, QTextEdit
+    QListWidget, QLineEdit, QMessageBox, QHBoxLayout, QTextEdit, QSplitter
 )
 from PyQt6.QtCore import Qt
 
@@ -13,7 +13,7 @@ class LibraryManager(QWidget):
         self.setGeometry(100, 100, 600, 400)
         self.setStyleSheet("background-color: #2E2E2E; color: white;")
 
-        self.layout = QHBoxLayout()
+        self.layout = QVBoxLayout()
 
         self.library_layout = QVBoxLayout()
         
@@ -35,7 +35,8 @@ class LibraryManager(QWidget):
         self.remove_button.clicked.connect(self.remove_library)
         self.library_layout.addWidget(self.remove_button)
 
-        self.layout.addLayout(self.library_layout)
+        # Création d'un QSplitter pour gérer la console
+        self.splitter = QSplitter(Qt.Orientation.Horizontal)
 
         # Création du champ de texte pour la console
         self.console_output = QTextEdit()
@@ -44,7 +45,20 @@ class LibraryManager(QWidget):
         # Modification du style pour avoir un fond noir et du texte blanc
         self.console_output.setStyleSheet("background-color: black; color: white; font-family: monospace;")
 
-        self.layout.addWidget(self.console_output)
+        # Ajout des widgets au splitter
+        self.splitter.addWidget(QWidget())  # Espace vide pour le premier widget (pour les bibliothèques)
+        self.splitter.addWidget(self.console_output)
+
+        # Ajout du splitter au layout principal
+        self.layout.addLayout(self.library_layout)
+        
+        # Bouton pour afficher/masquer la console
+        self.toggle_console_button = QPushButton("Afficher/Masquer Console")
+        self.toggle_console_button.clicked.connect(self.toggle_console)
+        self.layout.addWidget(self.toggle_console_button)
+
+        # Ajout du splitter au layout principal
+        self.layout.addWidget(self.splitter)
 
         self.setLayout(self.layout)
         
@@ -105,6 +119,26 @@ class LibraryManager(QWidget):
         except Exception as e:
             QMessageBox.critical(self, "Erreur", f"Erreur lors de la suppression de la bibliothèque: {e}")
             self.log_message(f"Erreur lors de la suppression de la bibliothèque: {e}")
+
+    def toggle_console(self):
+        """Affiche ou masque la console."""
+        if self.console_output.isVisible():
+            # Masquer la console
+            index = 1  # Index du widget console dans le splitter
+            widget = self.splitter.widget(index)
+            widget.hide()  # Masquer le widget
+            
+            # Changer le texte du bouton
+            self.toggle_console_button.setText("Afficher Console")
+            
+        else:
+            # Afficher la console
+            index = 1  # Index du widget console dans le splitter
+            widget = self.splitter.widget(index)
+            widget.show()  # Afficher le widget
+            
+            # Changer le texte du bouton
+            self.toggle_console_button.setText("Masquer Console")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
