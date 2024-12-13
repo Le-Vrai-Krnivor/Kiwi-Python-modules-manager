@@ -88,6 +88,10 @@ class LibraryManager(QWidget):
             QPushButton:pressed {
                 background-color: #001122;
             }
+            QPushButton:disabled {
+                background-color: #666666; /* Couleur grise pour le bouton désactivé */
+                color: #999999; /* Couleur du texte grisé */
+            }
             """)
 
     def log_message(self, message):
@@ -119,10 +123,13 @@ class LibraryManager(QWidget):
     def update_remove_button_state(self):
         """Met à jour l'état du bouton de suppression en fonction de la sélection."""
         selected_items = self.list_widget.selectedItems()
+        
         if selected_items:
             self.remove_button.setEnabled(True)  # Active le bouton si une bibliothèque est sélectionnée
+            self.style_button(self.remove_button)  # Applique le style normal lorsque activé
         else:
             self.remove_button.setEnabled(False)  # Désactive sinon
+            self.style_button(self.remove_button)  # Applique le style grisé
 
     def prompt_add_library(self):
         library_name, ok = QInputDialog.getText(self, "Ajouter une bibliothèque", "Nom de la bibliothèque:")
@@ -139,15 +146,15 @@ class LibraryManager(QWidget):
             progress_dialog.show()
             result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             
+            progress_dialog.close()  # Ferme le dialogue après l'exécution
+            
             if result.stdout:
-                progress_dialog.close()  # Ferme le dialogue après l'exécution
                 self.log_message(result.stdout)
                 item = QListWidgetItem(library_name)
                 item.setData(Qt.ItemDataRole.UserRole, library_name)  
                 self.list_widget.addItem(item)  
                 
             if result.stderr:
-                progress_dialog.close()  # Ferme le dialogue après l'exécution
                 QMessageBox.warning(self, "Erreur", f"Erreur lors de l'ajout de la bibliothèque : {result.stderr}")
                 
             QMessageBox.information(self, "Succès", f"La bibliothèque '{library_name}' a été installée avec succès.")
