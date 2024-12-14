@@ -12,64 +12,36 @@ class LibraryManager(QWidget):
         self.setWindowTitle("Gestionnaire de Bibliothèques Python")
         self.setGeometry(100, 100, 600, 400)
         self.setStyleSheet("background-color: #2E2E2E; color: white; font-family: Arial;")
-
         self.layout = QVBoxLayout()
-
         self.library_layout = QVBoxLayout()
-        
         self.label = QLabel("Bibliothèques Python Installées:")
         self.library_layout.addWidget(self.label)
-
         self.list_widget = QListWidget()
         self.library_layout.addWidget(self.list_widget)
-
-        # Création d'un layout horizontal pour les boutons
         button_layout = QHBoxLayout()
-
-        # Bouton pour ajouter une bibliothèque
         self.add_button = QPushButton("Ajouter")
         self.style_button(self.add_button)
         self.add_button.clicked.connect(self.prompt_add_library)
         button_layout.addWidget(self.add_button)
-
-        # Bouton pour supprimer une bibliothèque
         self.remove_button = QPushButton("Supprimer")
         self.style_button(self.remove_button)
         self.remove_button.clicked.connect(self.remove_library)
-        self.remove_button.setEnabled(False)  # Désactive le bouton au départ
+        self.remove_button.setEnabled(False) 
         button_layout.addWidget(self.remove_button)
-
-        # Ajout du layout des boutons au layout principal
         self.library_layout.addLayout(button_layout)
-
-        # Création d'un QSplitter pour gérer la console
         self.splitter = QSplitter(Qt.Orientation.Horizontal)
-
-        # Champ de texte pour la console
         self.console_output = QTextEdit()
         self.console_output.setReadOnly(True)
-        
-        # Style pour la console
         self.console_output.setStyleSheet("background-color: black; color: white; font-family: monospace;")
-
-        # Ajout des widgets au splitter
-        self.splitter.addWidget(QWidget())  # Espace vide pour le premier widget (pour les bibliothèques)
+        self.splitter.addWidget(QWidget()) 
         self.splitter.addWidget(self.console_output)
-
-        # Ajout du splitter au layout principal
         self.layout.addLayout(self.library_layout)
-        
-        # Bouton pour afficher/masquer la console
         self.toggle_console_button = QPushButton("Afficher/Masquer Console")
         self.style_button(self.toggle_console_button)
         self.toggle_console_button.clicked.connect(self.toggle_console)
         self.layout.addWidget(self.toggle_console_button)
-
-        # Ajout du splitter au layout principal
         self.layout.addWidget(self.splitter)
-
         self.setLayout(self.layout)
-        
         self.load_libraries()
 
     def style_button(self, button):
@@ -125,11 +97,11 @@ class LibraryManager(QWidget):
         selected_items = self.list_widget.selectedItems()
         
         if selected_items:
-            self.remove_button.setEnabled(True)  # Active le bouton si une bibliothèque est sélectionnée
-            self.style_button(self.remove_button)  # Applique le style normal lorsque activé
+            self.remove_button.setEnabled(True) 
+            self.style_button(self.remove_button)
         else:
-            self.remove_button.setEnabled(False)  # Désactive sinon
-            self.style_button(self.remove_button)  # Applique le style grisé
+            self.remove_button.setEnabled(False) 
+            self.style_button(self.remove_button) 
 
     def prompt_add_library(self):
         library_name, ok = QInputDialog.getText(self, "Ajouter une bibliothèque", "Nom de la bibliothèque:")
@@ -146,7 +118,7 @@ class LibraryManager(QWidget):
             progress_dialog.show()
             result = subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
             
-            progress_dialog.close()  # Ferme le dialogue après l'exécution
+            progress_dialog.close()
             
             if result.stdout:
                 self.log_message(result.stdout)
@@ -170,7 +142,7 @@ class LibraryManager(QWidget):
             QMessageBox.warning(self, "Avertissement", "Veuillez sélectionner une bibliothèque à supprimer.")
             return
         
-        library_name = selected_items[0].data(Qt.ItemDataRole.UserRole)  # Récupère le nom stocké
+        library_name = selected_items[0].data(Qt.ItemDataRole.UserRole)
         
         command = [sys.executable, '-m', 'pip', 'uninstall', '-y', library_name]
         
@@ -187,7 +159,6 @@ class LibraryManager(QWidget):
                 
             QMessageBox.information(self, "Succès", f"La bibliothèque '{library_name}' a été supprimée avec succès.")
             
-            # Met à jour l'état du bouton après suppression
             self.update_remove_button_state()
             
         except Exception as e:
