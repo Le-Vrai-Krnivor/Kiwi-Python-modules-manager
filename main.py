@@ -4,6 +4,7 @@ import requests
 import os
 import zipfile
 import shutil
+import pythoncom
 from PyQt6.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QLabel, QPushButton, QListWidget, 
     QMessageBox, QSplitter, QListWidgetItem, QHBoxLayout, QTextEdit, 
