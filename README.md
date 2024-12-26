@@ -22,10 +22,6 @@
 ``git clone https://github.com/Le-Vrai-Krnivor/Kiwi-Python-modules-manager``
 
 
-## 🚀 Démarrage Rapide
-
-bash
-python main.py
 
 🤝 Contribution
-Contributions ouvertes ! Merci de respecter les guidelines du projet. Fait avec ❤️ par la communauté open source
+Contributions ouvertes ! Merci de respecter les guidelines du projet. Fait avec ❤️ par Krnivor
