@@ -18,7 +18,6 @@
 ## 📦 Installation
 
 **bash :**
-# Clonage du dépôt
 ``git clone https://github.com/Le-Vrai-Krnivor/Kiwi-Python-modules-manager``
 
 
