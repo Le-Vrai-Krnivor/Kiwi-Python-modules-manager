@@ -7,24 +7,22 @@
 -   💻 Console intégrée
 -   🔄 Mises à jour automatiques
 
-🛠️ Prérequis Techniques
+## 🛠️ Prérequis Techniques : 
 
-    Python 3.8+
-    PyQt6
-    pip
-    requests
-    pyinstaller
+- Python 3.8 et +
+- pip
+- PyQt6        (pip install PyQt6)
+- requests     (pip install requests)
+- pyinstaller  (pip install pyinstaller)
 
-📦 Installation
+## 📦 Installation
 
-bash
+**bash :**
 # Clonage du dépôt
-git clone https://github.com/Le-Vrai-Krnivor/Kiwi-Python-modules-manager
+- git clone https://github.com/Le-Vrai-Krnivor/Kiwi-Python-modules-manager
 
-# Installation des dépendances
-pip install -r requirements.txt
 
-🚀 Démarrage Rapide
+## 🚀 Démarrage Rapide
 
 bash
 python main.py
