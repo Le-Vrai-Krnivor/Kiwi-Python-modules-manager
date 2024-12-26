@@ -1,13 +1,13 @@
 # Kiwi Python Modules Manager
 ## 🌟 Présentation du Projet :
-## Un gestionnaire de bibliothèques Python open-source, développé avec PyQt6, permettant :
+## Un gestionnaire de bibliothèques Python open-source, développé avec PyQt6, intégrant :
 
 -   📦 Gestion des modules Python
 -   🔍 Installation/Suppression de bibliothèques
 -   💻 Console intégrée
 -   🔄 Mises à jour automatiques
 
-## 🛠️ Prérequis Techniques : 
+## 🛠️ Prérequis Techniques  
 
 - Python 3.8 et +
 - pip
@@ -22,5 +22,5 @@
 
 
 
-🤝 Contribution
+## 🤝 Contribution
 Contributions ouvertes ! Fait avec ❤️ par Krnivor
