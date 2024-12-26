@@ -11,9 +11,9 @@
 
 - Python 3.8 et +
 - pip
-- PyQt6        (pip install PyQt6)
-- requests     (pip install requests)
-- pyinstaller  (pip install pyinstaller)
+- PyQt6        ``pip install PyQt6``
+- requests     ``pip install requests``
+- pyinstaller  ``pip install pyinstaller``
 
 ## 📦 Installation
 
