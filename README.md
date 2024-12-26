@@ -24,4 +24,4 @@
 
 
 🤝 Contribution
-Contributions ouvertes ! Merci de respecter les guidelines du projet. Fait avec ❤️ par Krnivor
+Contributions ouvertes ! Fait avec ❤️ par Krnivor
