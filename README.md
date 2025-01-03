@@ -1,4 +1,4 @@
-# Kiwi Python Modules Manager
+# Python Modules Manager
 ## 🌟 Présentation du Projet :
 ## Un gestionnaire de bibliothèques Python open-source, développé avec PyQt6, intégrant :
 
@@ -18,7 +18,7 @@
 ## 📦 Installation
 
 **bash :**
-``git clone https://github.com/Le-Vrai-Krnivor/Kiwi-Python-modules-manager``
+``git clone https://github.com/Le-Vrai-Krnivor/Python-modules-manager``
 
 
 
